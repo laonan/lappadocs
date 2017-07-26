@@ -1,0 +1,162 @@
+.. Lappa documentation master file, created by
+   sphinx-quickstart on Wed Jul 26 15:59:06 2017.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+首页
+==================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+这里仅仅是Lappa开放接口的开发文档，如果需要服务端或客户端的使用方法，请查阅用户手册或帮助文档。
+
+获取token
+------------------
+
+首先要从服务端得到secret，然后通过secret取到token，后面的每个接口都要通过header把token传到服务器才能正常调用。
+
+地址: `http://lappa.moorol.com/api/app-token/ <http://lappa.moorol.com/api/app-token/>`_
+
+Method: POST
+
+Content-Type: application/x-www-form-urlencoded
+
+传入参数说明:
+
+=======    =======     =============
+ 参数名       类型            备注
+=======    =======     =============
+app_id     Integer      默认为0
+secret     String      可到服务端获取
+=======    =======     =============
+
+若secret校验成功，会返回如下数据：
+
+
+::
+
+    {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5ABCDECJ9.xxxxx",
+        "expires_in": 7200
+    }
+
+expires_in为token失效时间，单位为秒。当token='N/A'或expires_in=0时，意味着所用的secret已经失效，请申请新的secret.
+
+成功获取token后，请在本地保存token，后面所有接口需要把token通过header传入，格式如下：
+
+::
+
+    Authorization: JWT [token]
+
+注意JWT后面有一个半角空格
+
+token失效后返回如下提示:
+
+::
+
+    {
+        "detail": "Signature has expired."
+    }
+
+建议在调用接口前，先检查token是否失效，可以在本地通过expires_in来判断。请勿无必要频繁调用此接口，目前每个secret每天调用上限为100次。
+
+上传数据
+==================
+
+新增答案API
+------------------
+
+从接口新增答案
+
+地址: `http://lappa.moorol.com/api/open/add-reply-message/ <http://lappa.moorol.com/api/open/add-reply-message/>`_
+
+Method: POST
+
+Content-Type: application/json
+
+传入参数说明:
+
+========    =======     ====================================
+ 参数名       类型                      备注
+========    =======     ====================================
+message     String      消息内容，不能为空
+keywords    List        关键字集合，详细说明见下表[keywords说明]
+========    =======     ====================================
+
+keywords说明:
+
+==============    =======     ==================================
+ 参数名             类型                      备注
+==============    =======     ==================================
+keyword           String      关键字内容，不能为空
+matching_level    Integer     自定义的匹配级别，建议值：1-100
+==============    =======     ==================================
+
+示例Json:
+
+::
+
+    {
+        "keywords": [
+            {
+                "keyword": "lappa",
+                "matching_level": 10
+            },
+            {
+                "keyword": "love",
+                "matching_level": 5
+            }
+        ],
+        "message": "I love lappa"
+    }
+
+返回值，1为成功，0为失败：
+
+::
+
+    {
+        "saved": 1
+    }
+
+PS. 当HTTP状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。
+
+新增计划发送的消息API
+---------------------
+
+这些消息供服务端计划任务设置使用
+
+地址: `http://lappa.moorol.com/api/open/add-scheduled-message/ <http://lappa.moorol.com/api/open/add-scheduled-message/>`_
+
+Method: POST
+
+Content-Type: application/json
+
+传入参数说明:
+
+================    =======     ====================================
+ 参数名                类型                      备注
+================    =======     ====================================
+message             String      消息内容，不能为空
+category_number     Integer     消息类别自定义编码
+================    =======     ====================================
+
+示例Json:
+
+::
+
+    {
+        "message": "I love lappa",
+        "category_number": 10
+    }
+
+返回值，1为成功，0为失败：
+
+::
+
+    {
+        "saved": 1
+    }
+
+PS. 当HTTP状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。

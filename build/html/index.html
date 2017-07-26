@@ -1,0 +1,413 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>首页 &mdash; Lappa 机器人开放接口 1.0.1 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="genindex.html"/>
+        <link rel="search" title="搜索" href="search.html"/>
+    <link rel="top" title="Lappa 机器人开放接口 1.0.1 文档" href="#"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Lappa 机器人开放接口
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">首页</a><ul>
+<li><a class="reference internal" href="#token">获取token</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2">上传数据</a><ul>
+<li><a class="reference internal" href="#api">新增答案API</a></li>
+<li><a class="reference internal" href="#id3">新增计划发送的消息API</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Lappa 机器人开放接口</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>首页</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>首页<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>这里仅仅是Lappa开放接口的开发文档，如果需要服务端或客户端的使用方法，请查阅用户手册或帮助文档。</p>
+<div class="section" id="token">
+<h2>获取token<a class="headerlink" href="#token" title="永久链接至标题">¶</a></h2>
+<p>首先要从服务端得到secret，然后通过secret取到token，后面的每个接口都要通过header把token传到服务器才能正常调用。</p>
+<p>地址: <a class="reference external" href="http://lappa.moorol.com/api/app-token/">http://lappa.moorol.com/api/app-token/</a></p>
+<p>Method: POST</p>
+<p>Content-Type: application/x-www-form-urlencoded</p>
+<p>传入参数说明:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数名</th>
+<th class="head">类型</th>
+<th class="head">备注</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>app_id</td>
+<td>Integer</td>
+<td>默认为0</td>
+</tr>
+<tr class="row-odd"><td>secret</td>
+<td>String</td>
+<td>可到服务端获取</td>
+</tr>
+</tbody>
+</table>
+<p>若secret校验成功，会返回如下数据：</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="s2">&quot;eyJhbGciOiJIUzI1NiIsInR5ABCDECJ9.xxxxx&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;expires_in&quot;</span><span class="p">:</span> <span class="mi">7200</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>expires_in为token失效时间，单位为秒。当token=’N/A’或expires_in=0时，意味着所用的secret已经失效，请申请新的secret.</p>
+<p>成功获取token后，请在本地保存token，后面所有接口需要把token通过header传入，格式如下：</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Authorization</span><span class="p">:</span> <span class="n">JWT</span> <span class="p">[</span><span class="n">token</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>注意JWT后面有一个半角空格</p>
+<p>token失效后返回如下提示:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;detail&quot;</span><span class="p">:</span> <span class="s2">&quot;Signature has expired.&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>建议在调用接口前，先检查token是否失效，可以在本地通过expires_in来判断。请勿无必要频繁调用此接口，目前每个secret每天调用上限为100次。</p>
+</div>
+</div>
+<div class="section" id="id2">
+<h1>上传数据<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h1>
+<div class="section" id="api">
+<h2>新增答案API<a class="headerlink" href="#api" title="永久链接至标题">¶</a></h2>
+<p>从接口新增答案</p>
+<p>地址: <a class="reference external" href="http://lappa.moorol.com/api/open/add-reply-message/">http://lappa.moorol.com/api/open/add-reply-message/</a></p>
+<p>Method: POST</p>
+<p>Content-Type: application/json</p>
+<p>传入参数说明:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="13%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数名</th>
+<th class="head">类型</th>
+<th class="head">备注</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>message</td>
+<td>String</td>
+<td>消息内容，不能为空</td>
+</tr>
+<tr class="row-odd"><td>keywords</td>
+<td>List</td>
+<td>关键字集合，详细说明见下表[keywords说明]</td>
+</tr>
+</tbody>
+</table>
+<p>keywords说明:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="13%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数名</th>
+<th class="head">类型</th>
+<th class="head">备注</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>keyword</td>
+<td>String</td>
+<td>关键字内容，不能为空</td>
+</tr>
+<tr class="row-odd"><td>matching_level</td>
+<td>Integer</td>
+<td>自定义的匹配级别，建议值：1-100</td>
+</tr>
+</tbody>
+</table>
+<p>示例Json:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;keywords&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;keyword&quot;</span><span class="p">:</span> <span class="s2">&quot;lappa&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;matching_level&quot;</span><span class="p">:</span> <span class="mi">10</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;keyword&quot;</span><span class="p">:</span> <span class="s2">&quot;love&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;matching_level&quot;</span><span class="p">:</span> <span class="mi">5</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;I love lappa&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>返回值，1为成功，0为失败：</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;saved&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>PS. 当HTTP状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。</p>
+</div>
+<div class="section" id="id3">
+<h2>新增计划发送的消息API<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>这些消息供服务端计划任务设置使用</p>
+<p>地址: <a class="reference external" href="http://lappa.moorol.com/api/open/add-scheduled-message/">http://lappa.moorol.com/api/open/add-scheduled-message/</a></p>
+<p>Method: POST</p>
+<p>Content-Type: application/json</p>
+<p>传入参数说明:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="12%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数名</th>
+<th class="head">类型</th>
+<th class="head">备注</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>message</td>
+<td>String</td>
+<td>消息内容，不能为空</td>
+</tr>
+<tr class="row-odd"><td>category_number</td>
+<td>Integer</td>
+<td>消息类别自定义编码</td>
+</tr>
+</tbody>
+</table>
+<p>示例Json:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;I love lappa&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;category_number&quot;</span><span class="p">:</span> <span class="mi">10</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>返回值，1为成功，0为失败：</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;saved&quot;</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>PS. 当HTTP状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Lappa.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
