@@ -122,7 +122,7 @@ matching_level    Integer     自定义的匹配级别，建议值：1-100
 
 PS. 当HTTP状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。
 
-新增计划发送的消息API
+新增计划发送的消息
 ---------------------
 
 这些消息供服务端计划任务设置使用
@@ -160,3 +160,50 @@ category_number     Integer     消息类别自定义编码
     }
 
 PS. 当HTTP状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。
+
+响应对话
+==================
+
+根据传入的句子，作出回复
+
+地址: `http://lappa.moorol.com/api/save-and-reply-message/ <http://lappa.moorol.com/api/save-and-reply-message/>`_
+
+Method: POST
+
+Content-Type: application/x-www-form-urlencoded
+
+传入参数说明:
+
+================    =======     =================================================
+ 参数名               类型                             备注
+================    =======     =================================================
+msg_type            String      消息类型，暂时只能处理文本，默认为Text
+message             String      传入的消息
+from_username       String      来自用户名，用于回调时使用，比如微信带@的用户名，可以为空
+actual_nickname     String      昵称
+is_group_message    Boolean     是否是来自群聊的消息 可以为空
+is_at               Boolean     是否是被@ 可以为空
+group_nickname      String      群名称，可以为空
+================    =======     =================================================
+
+返回数据Json未例(普通消息)：
+
+::
+
+    {
+        "to_username": "@@51b8d70078bded99350bf798ecc2013ae39da405521c01ef93efcd86e45f2e8a",
+        "message": "虽然是出嫁了姑娘，回到老家才有归属感",
+        "actual_nickname": "测试用户(ARC)"
+     }
+
+返回数据Json未例(图片消息)：
+
+::
+
+    {
+        "to_username": "@@51b8d70078bded99350bf798ecc2013ae39da405521c01ef93efcd86e45f2e8a",
+        "message": "LAPPA-IMAGE-MESSAGE http://img.027admin.com/uploads/allimg/150822/144024523I20-102501.jpg",
+        "actual_nickname": "测试用户(ARC)"
+    }
+
+注：图片消息头部包含"LAPPA-IMAGE-MESSAGE"字符串，紧跟着一个空格和图片网址，请在客户端根据情况下载或直接显示图片。

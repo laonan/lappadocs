@@ -96,9 +96,10 @@
 </li>
 <li><a class="reference internal" href="#id2">上传数据</a><ul>
 <li><a class="reference internal" href="#api">新增答案API</a></li>
-<li><a class="reference internal" href="#id3">新增计划发送的消息API</a></li>
+<li><a class="reference internal" href="#id3">新增计划发送的消息</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#id4">响应对话</a></li>
 </ul>
 </div>
             
@@ -300,7 +301,7 @@
 <p>PS. 当HTTP状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。</p>
 </div>
 <div class="section" id="id3">
-<h2>新增计划发送的消息API<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<h2>新增计划发送的消息<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <p>这些消息供服务端计划任务设置使用</p>
 <p>地址: <a class="reference external" href="http://lappa.moorol.com/api/open/add-scheduled-message/">http://lappa.moorol.com/api/open/add-scheduled-message/</a></p>
 <p>Method: POST</p>
@@ -344,6 +345,74 @@
 </div>
 <p>PS. 当HTTP状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。</p>
 </div>
+</div>
+<div class="section" id="id4">
+<h1>响应对话<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h1>
+<p>根据传入的句子，作出回复</p>
+<p>地址: <a class="reference external" href="http://lappa.moorol.com/api/save-and-reply-message/">http://lappa.moorol.com/api/save-and-reply-message/</a></p>
+<p>Method: POST</p>
+<p>Content-Type: application/x-www-form-urlencoded</p>
+<p>传入参数说明:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="9%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数名</th>
+<th class="head">类型</th>
+<th class="head">备注</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>msg_type</td>
+<td>String</td>
+<td>消息类型，暂时只能处理文本，默认为Text</td>
+</tr>
+<tr class="row-odd"><td>message</td>
+<td>String</td>
+<td>传入的消息</td>
+</tr>
+<tr class="row-even"><td>from_username</td>
+<td>String</td>
+<td>来自用户名，用于回调时使用，比如微信带&#64;的用户名，可以为空</td>
+</tr>
+<tr class="row-odd"><td>actual_nickname</td>
+<td>String</td>
+<td>昵称</td>
+</tr>
+<tr class="row-even"><td>is_group_message</td>
+<td>Boolean</td>
+<td>是否是来自群聊的消息 可以为空</td>
+</tr>
+<tr class="row-odd"><td>is_at</td>
+<td>Boolean</td>
+<td>是否是被&#64; 可以为空</td>
+</tr>
+<tr class="row-even"><td>group_nickname</td>
+<td>String</td>
+<td>群名称，可以为空</td>
+</tr>
+</tbody>
+</table>
+<p>返回数据Json未例(普通消息)：</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;to_username&quot;</span><span class="p">:</span> <span class="s2">&quot;@@51b8d70078bded99350bf798ecc2013ae39da405521c01ef93efcd86e45f2e8a&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;虽然是出嫁了姑娘，回到老家才有归属感&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;actual_nickname&quot;</span><span class="p">:</span> <span class="s2">&quot;测试用户(ARC)&quot;</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p>返回数据Json未例(图片消息)：</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;to_username&quot;</span><span class="p">:</span> <span class="s2">&quot;@@51b8d70078bded99350bf798ecc2013ae39da405521c01ef93efcd86e45f2e8a&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;LAPPA-IMAGE-MESSAGE http://img.027admin.com/uploads/allimg/150822/144024523I20-102501.jpg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;actual_nickname&quot;</span><span class="p">:</span> <span class="s2">&quot;测试用户(ARC)&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>注：图片消息头部包含”LAPPA-IMAGE-MESSAGE”字符串，紧跟着一个空格和图片网址，请在客户端根据情况下载或直接显示图片。</p>
 </div>
 
 
