@@ -60,7 +60,7 @@ token失效后返回如下提示:
         "detail": "Signature has expired."
     }
 
-建议在调用接口前，先检查token是否失效，可以在本地通过expires_in来判断。请勿无必要频繁调用此接口，目前每个secret每天调用上限为100次。
+建议在调用接口前，先检查token是否失效，可以在本地通过expires_in来判断。请勿无必要频繁调用此接口，目前普通用户每个secret每天调用上限为100次。
 
 上传数据
 ==================
@@ -207,3 +207,115 @@ group_nickname      String      群名称，可以为空
     }
 
 注：图片消息头部包含"LAPPA-IMAGE-MESSAGE"字符串，紧跟着一个空格和图片网址，请在客户端根据情况下载或直接显示图片。
+
+
+定时发送
+==================
+.. _get_schedulers:
+
+获取计划任务
+------------------
+
+获取计划任务列表
+
+地址: `http://lappa.moorol.com/api/scheduler/ <http://lappa.moorol.com/api/scheduler/>`_
+
+Method: GET
+
+Content-Type: application/x-www-form-urlencoded
+
+无传入参数
+
+返回Json示例：
+
+::
+
+    {
+        "count": 3,
+        "next": null,
+        "previous": null,
+        "results": [
+                {
+                    "id": 2,
+                    "trigger_time": "2017-07-24 04:00",
+                    "is_every_day": false,
+                    "is_every_week": true,
+                    "days": "WE|TH|FR"
+                },
+                {
+                    "id": 3,
+                    "trigger_time": "2017-07-24 03:00",
+                    "is_every_day": false,
+                    "is_every_week": false,
+                    "days": null
+                },
+                {
+                    "id": 1,
+                    "trigger_time": "2017-07-20 09:00",
+                    "is_every_day": true,
+                    "is_every_week": false,
+                    "days": null
+                }
+        ],
+    }
+
+说明：
+
+- 当is_every_week为true时，星期几days才有效
+- 当is_every_day为true时，is_every_week无意义
+- 当is_every_week和is_every_day都为false，表示只执行一次任务
+
+获取计划发送的消息
+------------------
+
+获取计划任务列表
+
+地址: `http://lappa.moorol.com/api/get-scheduled-message/ <http://lappa.moorol.com/api/get-scheduled-message/>`_
+
+Method: POST
+
+Content-Type: application/json
+
+传入参数说明:
+
+================    =======     ============================================
+ 参数名                类型                     备注
+================    =======     ============================================
+scheduler_id        Integer     计划任务ID :ref:`获取计划任务 <get_schedulers>`
+================    =======     ============================================
+
+示例Json:
+
+::
+
+    {
+        "scheduler_id": 100
+    }
+
+
+返回值Json示例（普通消息）：
+
+::
+
+    {
+        "to_username": "@bc1f5f5e5dd14eaaefd09300b304fcbb99b78b9b65b2cb8250d2dc429eadcd31",
+        "message": "来啊来吧",
+        "to_nickname": "王二麻子"
+    }
+
+返回值Json示例（图片消息）：
+
+::
+
+    {
+        "to_username": "@bc1f5f5e5dd14eaaefd09300b304fcbb99b78b9b65b2cb8250d2dc429eadcd31",
+        "message": "LAPPA-IMAGE-MESSAGE http://img.027admin.com/uploads/allimg/150822/144024523I20-102501.jpg",
+        "to_nickname": "王二麻子"
+    }
+
+注：图片消息头部包含"LAPPA-IMAGE-MESSAGE"字符串，紧跟着一个空格和图片网址，请在客户端根据情况下载或直接显示图片。
+
+建议或讨论
+==========
+
+QQ群：569325326

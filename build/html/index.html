@@ -95,11 +95,17 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#id2">上传数据</a><ul>
-<li><a class="reference internal" href="#api">新增答案API</a></li>
-<li><a class="reference internal" href="#id3">新增计划发送的消息</a></li>
+<li><a class="reference internal" href="#id3">新增答案和关键字</a></li>
+<li><a class="reference internal" href="#id4">新增计划发送的消息</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id4">响应对话</a></li>
+<li><a class="reference internal" href="#id5">响应对话</a></li>
+<li><a class="reference internal" href="#id6">定时发送</a><ul>
+<li><a class="reference internal" href="#get-schedulers">获取计划任务</a></li>
+<li><a class="reference internal" href="#id8">获取计划发送的消息</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id9">建议或讨论</a></li>
 </ul>
 </div>
             
@@ -217,13 +223,13 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>建议在调用接口前，先检查token是否失效，可以在本地通过expires_in来判断。请勿无必要频繁调用此接口，目前每个secret每天调用上限为100次。</p>
+<p>建议在调用接口前，先检查token是否失效，可以在本地通过expires_in来判断。请勿无必要频繁调用此接口，目前普通用户每个secret每天调用上限为100次。</p>
 </div>
 </div>
 <div class="section" id="id2">
 <h1>上传数据<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h1>
-<div class="section" id="api">
-<h2>新增答案API<a class="headerlink" href="#api" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id3">
+<h2>新增答案和关键字<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <p>从接口新增答案</p>
 <p>地址: <a class="reference external" href="http://lappa.moorol.com/api/open/add-reply-message/">http://lappa.moorol.com/api/open/add-reply-message/</a></p>
 <p>Method: POST</p>
@@ -300,8 +306,8 @@
 </div>
 <p>PS. 当HTTP状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。</p>
 </div>
-<div class="section" id="id3">
-<h2>新增计划发送的消息<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id4">
+<h2>新增计划发送的消息<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
 <p>这些消息供服务端计划任务设置使用</p>
 <p>地址: <a class="reference external" href="http://lappa.moorol.com/api/open/add-scheduled-message/">http://lappa.moorol.com/api/open/add-scheduled-message/</a></p>
 <p>Method: POST</p>
@@ -346,8 +352,8 @@
 <p>PS. 当HTTP状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。</p>
 </div>
 </div>
-<div class="section" id="id4">
-<h1>响应对话<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id5">
+<h1>响应对话<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h1>
 <p>根据传入的句子，作出回复</p>
 <p>地址: <a class="reference external" href="http://lappa.moorol.com/api/save-and-reply-message/">http://lappa.moorol.com/api/save-and-reply-message/</a></p>
 <p>Method: POST</p>
@@ -413,6 +419,108 @@
 </pre></div>
 </div>
 <p>注：图片消息头部包含”LAPPA-IMAGE-MESSAGE”字符串，紧跟着一个空格和图片网址，请在客户端根据情况下载或直接显示图片。</p>
+</div>
+<div class="section" id="id6">
+<h1>定时发送<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h1>
+<div class="section" id="get-schedulers">
+<span id="id7"></span><h2>获取计划任务<a class="headerlink" href="#get-schedulers" title="永久链接至标题">¶</a></h2>
+<p>获取计划任务列表</p>
+<p>地址: <a class="reference external" href="http://lappa.moorol.com/api/scheduler/">http://lappa.moorol.com/api/scheduler/</a></p>
+<p>Method: GET</p>
+<p>Content-Type: application/x-www-form-urlencoded</p>
+<p>无传入参数</p>
+<p>返回Json示例：</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;next&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+    <span class="s2">&quot;previous&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+    <span class="s2">&quot;results&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="s2">&quot;trigger_time&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-07-24 04:00&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;is_every_day&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+                <span class="s2">&quot;is_every_week&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                <span class="s2">&quot;days&quot;</span><span class="p">:</span> <span class="s2">&quot;WE|TH|FR&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+                <span class="s2">&quot;trigger_time&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-07-24 03:00&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;is_every_day&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+                <span class="s2">&quot;is_every_week&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+                <span class="s2">&quot;days&quot;</span><span class="p">:</span> <span class="n">null</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s2">&quot;trigger_time&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-07-20 09:00&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;is_every_day&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+                <span class="s2">&quot;is_every_week&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+                <span class="s2">&quot;days&quot;</span><span class="p">:</span> <span class="n">null</span>
+            <span class="p">}</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>说明：</p>
+<ul class="simple">
+<li>当is_every_week为true时，星期几days才有效</li>
+<li>当is_every_day为true时，is_every_week无意义</li>
+<li>当is_every_week和is_every_day都为false，表示只执行一次任务</li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h2>获取计划发送的消息<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p>获取计划任务列表</p>
+<p>地址: <a class="reference external" href="http://lappa.moorol.com/api/get-scheduled-message/">http://lappa.moorol.com/api/get-scheduled-message/</a></p>
+<p>Method: POST</p>
+<p>Content-Type: application/json</p>
+<p>传入参数说明:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="10%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">参数名</th>
+<th class="head">类型</th>
+<th class="head">备注</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>scheduler_id</td>
+<td>Integer</td>
+<td>计划任务ID <a class="reference internal" href="#get-schedulers"><span class="std std-ref">获取计划任务</span></a></td>
+</tr>
+</tbody>
+</table>
+<p>示例Json:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;scheduler_id&quot;</span><span class="p">:</span> <span class="mi">100</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>返回值Json示例（普通消息）：</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;to_username&quot;</span><span class="p">:</span> <span class="s2">&quot;@bc1f5f5e5dd14eaaefd09300b304fcbb99b78b9b65b2cb8250d2dc429eadcd31&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;来啊来吧&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;to_nickname&quot;</span><span class="p">:</span> <span class="s2">&quot;王二麻子&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>返回值Json示例（图片消息）：</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;to_username&quot;</span><span class="p">:</span> <span class="s2">&quot;@bc1f5f5e5dd14eaaefd09300b304fcbb99b78b9b65b2cb8250d2dc429eadcd31&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;LAPPA-IMAGE-MESSAGE http://img.027admin.com/uploads/allimg/150822/144024523I20-102501.jpg&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;to_nickname&quot;</span><span class="p">:</span> <span class="s2">&quot;王二麻子&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>注：图片消息头部包含”LAPPA-IMAGE-MESSAGE”字符串，紧跟着一个空格和图片网址，请在客户端根据情况下载或直接显示图片。</p>
+</div>
+</div>
+<div class="section" id="id9">
+<h1>建议或讨论<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h1>
+<p>QQ群：569325326</p>
 </div>
 
 
