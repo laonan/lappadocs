@@ -440,7 +440,7 @@
                 <span class="s2">&quot;trigger_time&quot;</span><span class="p">:</span> <span class="s2">&quot;2017-07-24 04:00&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;is_every_day&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
                 <span class="s2">&quot;is_every_week&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
-                <span class="s2">&quot;days&quot;</span><span class="p">:</span> <span class="s2">&quot;WE|TH|FR&quot;</span>
+                <span class="s2">&quot;days&quot;</span><span class="p">:</span> <span class="s2">&quot;0|2|6&quot;</span>
             <span class="p">},</span>
             <span class="p">{</span>
                 <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
@@ -462,7 +462,7 @@
 </div>
 <p>说明：</p>
 <ul class="simple">
-<li>当is_every_week为true时，星期几days才有效</li>
+<li>当is_every_week为true时，星期几days才有效, 0-6分别代表周一至周六</li>
 <li>当is_every_day为true时，is_every_week无意义</li>
 <li>当is_every_week和is_every_day都为false，表示只执行一次任务</li>
 </ul>

@@ -240,7 +240,7 @@ Content-Type: application/x-www-form-urlencoded
                     "trigger_time": "2017-07-24 04:00",
                     "is_every_day": false,
                     "is_every_week": true,
-                    "days": "WE|TH|FR"
+                    "days": "0|2|6"
                 },
                 {
                     "id": 3,
@@ -261,7 +261,7 @@ Content-Type: application/x-www-form-urlencoded
 
 说明：
 
-- 当is_every_week为true时，星期几days才有效
+- 当is_every_week为true时，星期几days才有效, 0-6分别代表周一至周六
 - 当is_every_day为true时，is_every_week无意义
 - 当is_every_week和is_every_day都为false，表示只执行一次任务
 
