@@ -265,6 +265,8 @@ Content-Type: application/x-www-form-urlencoded
 - 当is_every_day为true时，is_every_week无意义
 - 当is_every_week和is_every_day都为false，表示只执行一次任务
 
+*注：建议半小时左右取一次计划任务，或者是客户端设计一个"同步计划任务"按钮进行同步，高频率调用此接口（比如每秒轮询），后面可能会被限制。*
+
 获取计划发送的消息
 ------------------
 

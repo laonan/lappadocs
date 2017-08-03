@@ -186,7 +186,7 @@ is_at               Boolean     是否是被@ 可以为空
 group_nickname      String      群名称，可以为空
 ================    =======     =================================================
 
-返回数据Json未例(普通消息)：
+返回数据Json示例(普通消息)：
 
 ::
 
@@ -196,7 +196,7 @@ group_nickname      String      群名称，可以为空
         "actual_nickname": "测试用户(ARC)"
      }
 
-返回数据Json未例(图片消息)：
+返回数据Json示例(图片消息)：
 
 ::
 
@@ -264,6 +264,8 @@ Content-Type: application/x-www-form-urlencoded
 - 当is_every_week为true时，星期几days才有效, 0-6分别代表周一至周六
 - 当is_every_day为true时，is_every_week无意义
 - 当is_every_week和is_every_day都为false，表示只执行一次任务
+
+*注：建议半小时左右取一次计划任务，或者是客户端设计一个"同步计划任务"按钮进行同步，高频率调用此接口（比如每秒轮询），后面可能会被限制。*
 
 获取计划发送的消息
 ------------------

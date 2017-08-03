@@ -402,7 +402,7 @@
 </tr>
 </tbody>
 </table>
-<p>返回数据Json未例(普通消息)：</p>
+<p>返回数据Json示例(普通消息)：</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;to_username&quot;</span><span class="p">:</span> <span class="s2">&quot;@@51b8d70078bded99350bf798ecc2013ae39da405521c01ef93efcd86e45f2e8a&quot;</span><span class="p">,</span>
     <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;虽然是出嫁了姑娘，回到老家才有归属感&quot;</span><span class="p">,</span>
@@ -410,7 +410,7 @@
  <span class="p">}</span>
 </pre></div>
 </div>
-<p>返回数据Json未例(图片消息)：</p>
+<p>返回数据Json示例(图片消息)：</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;to_username&quot;</span><span class="p">:</span> <span class="s2">&quot;@@51b8d70078bded99350bf798ecc2013ae39da405521c01ef93efcd86e45f2e8a&quot;</span><span class="p">,</span>
     <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;LAPPA-IMAGE-MESSAGE http://img.027admin.com/uploads/allimg/150822/144024523I20-102501.jpg&quot;</span><span class="p">,</span>
@@ -466,6 +466,7 @@
 <li>当is_every_day为true时，is_every_week无意义</li>
 <li>当is_every_week和is_every_day都为false，表示只执行一次任务</li>
 </ul>
+<p><em>注：建议半小时左右取一次计划任务，或者是客户端设计一个”同步计划任务”按钮进行同步，高频率调用此接口（比如每秒轮询），后面可能会被限制。</em></p>
 </div>
 <div class="section" id="id8">
 <h2>获取计划发送的消息<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
