@@ -177,7 +177,7 @@
 <div class="section" id="token">
 <h2>获取token<a class="headerlink" href="#token" title="永久链接至标题">¶</a></h2>
 <p>首先要从服务端得到secret，然后通过secret取到token，后面的每个接口都要通过header把token传到服务器才能正常调用。</p>
-<p>地址: <a class="reference external" href="http://lappa.moorol.com/api/app-token/">http://lappa.moorol.com/api/app-token/</a></p>
+<p>地址: <a class="reference external" href="https://lappa.moorol.com/api/app-token/">https://lappa.moorol.com/api/app-token/</a></p>
 <p>Method: POST</p>
 <p>Content-Type: application/x-www-form-urlencoded</p>
 <p>传入参数说明:</p>
@@ -223,7 +223,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>建议在调用接口前，先检查token是否失效，可以在本地通过expires_in来判断。请勿无必要频繁调用此接口，目前普通用户每个secret每天调用上限为100次。</p>
+<p>建议在调用接口前，先检查本地保存的token是否失效再决定是否向服务器申请新的token，可以在本地通过expires_in来判断。请勿无必要频繁调用此接口，目前普通用户每个secret每天调用上限为100次。</p>
 </div>
 </div>
 <div class="section" id="id2">
@@ -231,7 +231,7 @@
 <div class="section" id="id3">
 <h2>新增答案和关键字<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <p>从接口新增答案</p>
-<p>地址: <a class="reference external" href="http://lappa.moorol.com/api/open/add-reply-message/">http://lappa.moorol.com/api/open/add-reply-message/</a></p>
+<p>地址: <a class="reference external" href="https://lappa.moorol.com/api/open/add-reply-message/">https://lappa.moorol.com/api/open/add-reply-message/</a></p>
 <p>Method: POST</p>
 <p>Content-Type: application/json</p>
 <p>传入参数说明:</p>
@@ -304,12 +304,12 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>PS. 当HTTP状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。</p>
+<p>PS. 当http状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。</p>
 </div>
 <div class="section" id="id4">
 <h2>新增计划发送的消息<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
 <p>这些消息供服务端计划任务设置使用</p>
-<p>地址: <a class="reference external" href="http://lappa.moorol.com/api/open/add-scheduled-message/">http://lappa.moorol.com/api/open/add-scheduled-message/</a></p>
+<p>地址: <a class="reference external" href="https://lappa.moorol.com/api/open/add-scheduled-message/">https://lappa.moorol.com/api/open/add-scheduled-message/</a></p>
 <p>Method: POST</p>
 <p>Content-Type: application/json</p>
 <p>传入参数说明:</p>
@@ -349,13 +349,13 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>PS. 当HTTP状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。</p>
+<p>PS. 当http状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。</p>
 </div>
 </div>
 <div class="section" id="id5">
 <h1>响应对话<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h1>
 <p>根据传入的句子，作出回复</p>
-<p>地址: <a class="reference external" href="http://lappa.moorol.com/api/save-and-reply-message/">http://lappa.moorol.com/api/save-and-reply-message/</a></p>
+<p>地址: <a class="reference external" href="https://lappa.moorol.com/api/save-and-reply-message/">https://lappa.moorol.com/api/save-and-reply-message/</a></p>
 <p>Method: POST</p>
 <p>Content-Type: application/x-www-form-urlencoded</p>
 <p>传入参数说明:</p>
@@ -425,7 +425,7 @@
 <div class="section" id="get-schedulers">
 <span id="id7"></span><h2>获取计划任务<a class="headerlink" href="#get-schedulers" title="永久链接至标题">¶</a></h2>
 <p>获取计划任务列表</p>
-<p>地址: <a class="reference external" href="http://lappa.moorol.com/api/scheduler/">http://lappa.moorol.com/api/scheduler/</a></p>
+<p>地址: <a class="reference external" href="https://lappa.moorol.com/api/scheduler/">https://lappa.moorol.com/api/scheduler/</a></p>
 <p>Method: GET</p>
 <p>Content-Type: application/x-www-form-urlencoded</p>
 <p>无传入参数</p>
@@ -471,7 +471,7 @@
 <div class="section" id="id8">
 <h2>获取计划发送的消息<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
 <p>获取计划任务列表</p>
-<p>地址: <a class="reference external" href="http://lappa.moorol.com/api/get-scheduled-message/">http://lappa.moorol.com/api/get-scheduled-message/</a></p>
+<p>地址: <a class="reference external" href="https://lappa.moorol.com/api/get-scheduled-message/">https://lappa.moorol.com/api/get-scheduled-message/</a></p>
 <p>Method: POST</p>
 <p>Content-Type: application/json</p>
 <p>传入参数说明:</p>

@@ -17,7 +17,7 @@
 
 首先要从服务端得到secret，然后通过secret取到token，后面的每个接口都要通过header把token传到服务器才能正常调用。
 
-地址: `http://lappa.moorol.com/api/app-token/ <http://lappa.moorol.com/api/app-token/>`_
+地址: `https://lappa.moorol.com/api/app-token/ <https://lappa.moorol.com/api/app-token/>`_
 
 Method: POST
 
@@ -70,7 +70,7 @@ token失效后返回如下提示:
 
 从接口新增答案
 
-地址: `http://lappa.moorol.com/api/open/add-reply-message/ <http://lappa.moorol.com/api/open/add-reply-message/>`_
+地址: `https://lappa.moorol.com/api/open/add-reply-message/ <https://lappa.moorol.com/api/open/add-reply-message/>`_
 
 Method: POST
 
@@ -120,14 +120,14 @@ matching_level    Integer     自定义的匹配级别，建议值：1-100
         "saved": 1
     }
 
-PS. 当HTTP状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。
+PS. 当http状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。
 
 新增计划发送的消息
 ---------------------
 
 这些消息供服务端计划任务设置使用
 
-地址: `http://lappa.moorol.com/api/open/add-scheduled-message/ <http://lappa.moorol.com/api/open/add-scheduled-message/>`_
+地址: `https://lappa.moorol.com/api/open/add-scheduled-message/ <https://lappa.moorol.com/api/open/add-scheduled-message/>`_
 
 Method: POST
 
@@ -159,14 +159,14 @@ category_number     Integer     消息类别自定义编码
         "saved": 1
     }
 
-PS. 当HTTP状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。
+PS. 当http状态码为201时是新增成功，200则是原来已经有了这条消息，更新成功。
 
 响应对话
 ==================
 
 根据传入的句子，作出回复
 
-地址: `http://lappa.moorol.com/api/save-and-reply-message/ <http://lappa.moorol.com/api/save-and-reply-message/>`_
+地址: `https://lappa.moorol.com/api/save-and-reply-message/ <https://lappa.moorol.com/api/save-and-reply-message/>`_
 
 Method: POST
 
@@ -218,7 +218,7 @@ group_nickname      String      群名称，可以为空
 
 获取计划任务列表
 
-地址: `http://lappa.moorol.com/api/scheduler/ <http://lappa.moorol.com/api/scheduler/>`_
+地址: `https://lappa.moorol.com/api/scheduler/ <https://lappa.moorol.com/api/scheduler/>`_
 
 Method: GET
 
@@ -272,7 +272,7 @@ Content-Type: application/x-www-form-urlencoded
 
 获取计划任务列表
 
-地址: `http://lappa.moorol.com/api/get-scheduled-message/ <http://lappa.moorol.com/api/get-scheduled-message/>`_
+地址: `https://lappa.moorol.com/api/get-scheduled-message/ <https://lappa.moorol.com/api/get-scheduled-message/>`_
 
 Method: POST
 
