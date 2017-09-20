@@ -238,6 +238,7 @@ Content-Type: application/x-www-form-urlencoded
                 {
                     "id": 2,
                     "trigger_time": "2017-07-24 04:00",
+                    "message_category_number": 30,
                     "is_every_day": false,
                     "is_every_week": true,
                     "days": "0|2|6"
@@ -245,6 +246,7 @@ Content-Type: application/x-www-form-urlencoded
                 {
                     "id": 3,
                     "trigger_time": "2017-07-24 03:00",
+                    "message_category_number": 30,
                     "is_every_day": false,
                     "is_every_week": false,
                     "days": null
@@ -252,6 +254,7 @@ Content-Type: application/x-www-form-urlencoded
                 {
                     "id": 1,
                     "trigger_time": "2017-07-20 09:00",
+                    "message_category_number": 30,
                     "is_every_day": true,
                     "is_every_week": false,
                     "days": null
