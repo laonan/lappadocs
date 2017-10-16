@@ -265,7 +265,7 @@ Content-Type: application/x-www-form-urlencoded
 说明：
 
 - message_category_number: 自定义消息类别编号
-- 当is_every_week为true时，星期几days才有效, 0-6分别代表周一至周六
+- 当is_every_week为true时，星期几days才有效, 0-6分别代表周一至周日
 - 当is_every_day为true时，is_every_week无意义
 - 当is_every_week和is_every_day都为false，表示只执行一次任务
 
